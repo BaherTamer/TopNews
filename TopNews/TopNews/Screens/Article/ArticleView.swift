@@ -23,12 +23,16 @@ struct ArticleView: View {
                     .scaleEffect(self.animateView ? 1 : 0.93)
                 
                 VStack(spacing: 30) {
+                    authorSection
+                    
+                    Divider()
+                    
                     articleContent
                     
                     Divider()
                     
                     shareButton
-
+                    
                 }
                 .padding()
                 .opacity(self.animateContent ? 1 : 0)
@@ -69,6 +73,26 @@ struct ArticleView: View {
         .padding(.top, safeArea().top)
         .offset(y: -10)
         .opacity(self.animateView ? 1 : 0)
+    }
+    
+    var authorSection: some View {
+        HStack {
+            VStack(alignment: .leading) {
+                Text("Author:")
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+                
+                Text(article.authorText)
+                    .fontWeight(.bold)
+                    .foregroundColor(.primary)
+            }
+            
+            Spacer()
+            
+            Text(article.publishedDate)
+                .font(.caption)
+                .foregroundColor(.secondary)
+        }
     }
     
     var articleContent: some View {
