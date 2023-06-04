@@ -8,7 +8,7 @@
 import SwiftUI
 
 extension Animation {
-    static func newsCardAnimation() -> Animation {
-        Animation.interactiveSpring(response: 0.7, dampingFraction: 0.6, blendDuration: 0.6)
+    static var newsCardAnimation: Animation {
+        .interactiveSpring(response: 0.7, dampingFraction: 0.6, blendDuration: 0.6)
     }
 }

@@ -36,15 +36,15 @@ struct ArticleView: View {
                 }
                 .padding()
                 .opacity(self.animateContent ? 1 : 0)
-                .scaleEffect(self.animateView ? 1 : 0, anchor: .top)
+                .scaleEffect(self.animateView ? 1 : 0.9, anchor: .top)
             }
         }
         .onAppear {
-            withAnimation(.newsCardAnimation()) {
+            withAnimation(.newsCardAnimation) {
                 self.animateView = true
             }
             
-            withAnimation(.newsCardAnimation().delay(0.05)) {
+            withAnimation(.newsCardAnimation.delay(0.05)) {
                 self.animateContent = true
             }
         }

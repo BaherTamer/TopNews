@@ -23,7 +23,7 @@ struct ArticleListView: View {
             VStack(spacing: 0) {
                 ForEach(articles) { article in
                     Button {
-                        withAnimation(.newsCardAnimation()) {
+                        withAnimation(.newsCardAnimation) {
                             self.selectedArticle = article
                             self.isShowingArticleView = true
                         }
@@ -39,7 +39,7 @@ struct ArticleListView: View {
         .overlay {
             if let selectedArticle, isShowingArticleView {
                 ArticleView(article: selectedArticle, animateView: $animateView, animateContent: $animateContent) {
-                    withAnimation(.newsCardAnimation()) {
+                    withAnimation(.newsCardAnimation) {
                         self.animateView = false
                         self.animateContent = false
                         self.selectedArticle = nil
