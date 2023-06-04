@@ -21,7 +21,7 @@ struct ArticleCardSubHeader: View {
                 }
                 
                 ArticleCardButton(type: .share) {
-                    // TODO: Share Logic
+                    self.presentShareSheet(url: article.articleURL)
                 }
             }
         }

@@ -20,3 +20,13 @@ extension View {
         return safeArea
     }
 }
+
+extension View {
+    func presentShareSheet(url: URL) {
+        let activityViewController = UIActivityViewController(activityItems: [url], applicationActivities: nil)
+        
+        if let windowScene =  UIApplication.shared.connectedScenes.first as? UIWindowScene {
+            windowScene.keyWindow?.rootViewController?.present(activityViewController, animated: true)
+        }
+    }
+}

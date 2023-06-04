@@ -105,7 +105,7 @@ struct ArticleView: View {
     
     var shareButton: some View {
         Button {
-            // TODO: Share Article Link
+            self.presentShareSheet(url: article.articleURL)
         } label: {
             Label("Share Article", systemImage: "square.and.arrow.up")
                 .foregroundColor(.primary)
