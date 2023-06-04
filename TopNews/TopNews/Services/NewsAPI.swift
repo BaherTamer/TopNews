@@ -51,7 +51,7 @@ struct NewsAPI {
     private func getNewsURL(from category: Category) -> URL {
         var url = "https://newsapi.org/v2/top-headlines?"
         
-        url += "&apikey=\(apiKey)"
+        url += "apikey=\(apiKey)"
         url += "&language=en"
         url += "&category=\(category.rawValue)"
         

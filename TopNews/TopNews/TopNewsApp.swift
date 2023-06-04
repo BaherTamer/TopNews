@@ -11,7 +11,7 @@ import SwiftUI
 struct TopNewsApp: App {
     var body: some Scene {
         WindowGroup {
-            ArticleListView(articles: Article.previewData)
+            ContentView()
                 .background(Color(UIColor.systemGray6))
                 .preferredColorScheme(.dark)
         }

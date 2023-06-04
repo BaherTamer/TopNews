@@ -14,11 +14,11 @@ struct Article: Codable, Equatable {
     let source: Source
     
     let url: String
-    let content: String
     let publishedAt: Date
     
     let title: String?
     let author: String?
+    let content: String?
     let urlToImage: String?
     
     var titleText: String {
@@ -27,6 +27,10 @@ struct Article: Codable, Equatable {
     
     var authorText: String {
         author ?? "Unkown"
+    }
+    
+    var contentText: String {
+        content ?? "No Content"
     }
     
     var publishedDate: String {

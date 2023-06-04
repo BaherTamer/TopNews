@@ -52,6 +52,7 @@ struct ArticleView: View {
         .overlay(alignment: .top) {
             header
         }
+        .toolbar(.hidden, for: .navigationBar)
         .statusBar(hidden: true)
         .ignoresSafeArea(.container, edges: .top)
         .background(Color(UIColor.systemGray6))
@@ -98,7 +99,7 @@ struct ArticleView: View {
     var articleContent: some View {
         // The API unfortunately return content until 200 charcter max.
         ForEach(0 ..< 6) { _ in
-            Text(article.content.prefix(197) + ".")
+            Text(article.contentText.prefix(197) + ".")
                 .multilineTextAlignment(.leading)
         }
     }
