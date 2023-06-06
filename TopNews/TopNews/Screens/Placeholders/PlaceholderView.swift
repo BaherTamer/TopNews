@@ -22,6 +22,8 @@ struct PlaceholderView: View {
             Text(text)
                 .font(.headline)
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color(UIColor.systemGray6))
     }
 }
 

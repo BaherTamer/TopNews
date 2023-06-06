@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ArticleListView: View {
     
-    let articles: [Article]
+    @ObservedObject var newsModel: NewsModel
     
     @State private var selectedArticle: Article?
     @State private var isShowingArticleView: Bool = false
@@ -18,9 +18,19 @@ struct ArticleListView: View {
     
     @Namespace var animation
     
+    private var articles: [Article] {
+        if case let .success(articles) = newsModel.articlesPhase {
+            return articles
+        } else {
+            return []
+        }
+    }
+    
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack(spacing: 0) {
+                CategoryPicker(newsModel: newsModel)
+                
                 ForEach(articles) { article in
                     Button {
                         withAnimation(.newsCardAnimation) {
@@ -36,6 +46,7 @@ struct ArticleListView: View {
                 }
             }
         }
+        .background(Color(UIColor.systemGray6))
         .overlay {
             if let selectedArticle, isShowingArticleView {
                 ArticleView(article: selectedArticle, animateView: $animateView, animateContent: $animateContent) {
@@ -53,6 +64,6 @@ struct ArticleListView: View {
 
 struct NewsFeed_Previews: PreviewProvider {
     static var previews: some View {
-        ArticleListView(articles: Article.previewData)
+        ArticleListView(newsModel: NewsModel())
     }
 }

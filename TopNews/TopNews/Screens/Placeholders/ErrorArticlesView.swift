@@ -26,6 +26,8 @@ struct ErrorArticlesView: View {
                     .padding()
             }
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color(UIColor.systemGray6))
     }
 }
 

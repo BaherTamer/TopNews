@@ -12,7 +12,6 @@ struct TopNewsApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .background(Color(UIColor.systemGray6))
                 .preferredColorScheme(.dark)
         }
     }

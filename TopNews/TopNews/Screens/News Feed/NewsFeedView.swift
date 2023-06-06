@@ -11,25 +11,12 @@ struct NewsFeedView: View {
     
     @StateObject private var newsModel = NewsModel()
     
-    private var articles: [Article] {
-        if case let .success(articles) = newsModel.articlesPhase {
-            return articles
-        } else {
-            return []
-        }
-    }
-    
     var body: some View {
         NavigationView {
-            //ArticleListView(articles: self.articles)
             mainPhasesView
-                .navigationTitle(self.newsModel.selectedCategory.rawValue.capitalized)
-                .onAppear {
-                    self.loadTask()
-                }
-                .refreshable {
-                    self.loadTask()
-                }
+                .navigationTitle(self.newsModel.fetchTaskToken.category.rawValue.capitalized)
+                .task(id: self.newsModel.fetchTaskToken, loadTask)
+                .refreshable(action: refreshTask)
         }
     }
     
@@ -39,23 +26,29 @@ struct NewsFeedView: View {
             
         case .empty:
             ProgressView()
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(Color(UIColor.systemGray6))
             
         case .success(let articles) where articles.isEmpty:
             PlaceholderView(text: "No Articles", systemImage: "newspaper.fill")
             
         case .failure(let error):
-            ErrorArticlesView(text: error.localizedDescription) {
-                self.loadTask()
-            }
+            ErrorArticlesView(text: error.localizedDescription, action: refreshTask)
             
-        case .success(let articles):
-            ArticleListView(articles: articles)
+        case .success(_):
+            ArticleListView(newsModel: newsModel)
         }
     }
     
-    private func loadTask() {
+    @Sendable
+    private func loadTask() async {
+        await self.newsModel.loadArticles()
+    }
+    
+    @Sendable
+    private func refreshTask() {
         Task {
-            await self.newsModel.loadArticles()
+            self.newsModel.fetchTaskToken = FetchTaskToken(category: self.newsModel.fetchTaskToken.category, token: .now)
         }
     }
 }
@@ -63,5 +56,6 @@ struct NewsFeedView: View {
 struct NewsFeedView_Previews: PreviewProvider {
     static var previews: some View {
         NewsFeedView()
+            .preferredColorScheme(.dark)
     }
 }
