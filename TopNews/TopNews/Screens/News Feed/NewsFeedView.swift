@@ -9,7 +9,7 @@ import SwiftUI
 
 struct NewsFeedView: View {
     
-    @StateObject private var newsModel = NewsModel()
+    @EnvironmentObject var newsModel: NewsModel
     
     var body: some View {
         NavigationView {
@@ -35,8 +35,8 @@ struct NewsFeedView: View {
         case .failure(let error):
             ErrorArticlesView(text: error.localizedDescription, action: refreshTask)
             
-        case .success(_):
-            ArticleListView(newsModel: newsModel)
+        case .success(let articles):
+            ArticleListView(articles: articles, showCategoryPicker: true)
         }
     }
     
@@ -56,6 +56,7 @@ struct NewsFeedView: View {
 struct NewsFeedView_Previews: PreviewProvider {
     static var previews: some View {
         NewsFeedView()
+            .environmentObject(NewsModel())
             .preferredColorScheme(.dark)
     }
 }

@@ -30,3 +30,39 @@ extension View {
         }
     }
 }
+
+extension View {
+    func cardButtonStyle() -> some View {
+        modifier(CardButtonStyle())
+    }
+}
+
+struct CardButtonStyle: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .fontWeight(.bold)
+            .padding(8)
+            //.foregroundColor(.secondary)
+            .background {
+                RoundedRectangle(cornerRadius: 10)
+                    .fill(.ultraThickMaterial)
+            }
+    }
+}
+
+extension View {
+    func articleHeaderButtonStyle() -> some View {
+        modifier(ArticleHeaderButtonStyle())
+    }
+}
+
+struct ArticleHeaderButtonStyle: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .font(.headline)
+            .foregroundColor(.black)
+            .padding(10)
+            .background(.white)
+            .clipShape(Circle())
+    }
+}

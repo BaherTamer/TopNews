@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CategoryPicker: View {
     
-    @ObservedObject var newsModel: NewsModel
+    @EnvironmentObject var newsModel: NewsModel
     
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
@@ -38,7 +38,8 @@ struct CategoryPicker: View {
 
 struct CategoryPicker_Previews: PreviewProvider {
     static var previews: some View {
-        CategoryPicker(newsModel: NewsModel())
+        CategoryPicker()
+            .environmentObject(NewsModel())
             .padding()
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color(UIColor.systemGray6))

@@ -9,9 +9,15 @@ import SwiftUI
 
 @main
 struct TopNewsApp: App {
+    
+    @StateObject private var bookmarkModel = BookmarkModel.shared
+    @StateObject private var newsModel = NewsModel()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(bookmarkModel)
+                .environmentObject(newsModel)
                 .preferredColorScheme(.dark)
         }
     }

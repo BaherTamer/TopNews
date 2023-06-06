@@ -28,7 +28,7 @@ struct ArticleImage: View {
                         .scaledToFill()
                     
                 case .failure:
-                    Image(systemName: "Photo")
+                    Image(systemName: "photo")
                         .foregroundColor(.secondary)
                     
                 @unknown default:

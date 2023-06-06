@@ -11,17 +11,29 @@ struct ArticleCardSubHeader: View {
     
     let article: Article
     
+    @EnvironmentObject var bookmarkModel: BookmarkModel
+    
     var body: some View {
         HStack(spacing: 12) {
             authorSection
             
             HStack {
-                ArticleCardButton(type: .bookmark) {
-                    // TODO: Bookmark Logic
+                Button {
+                    withAnimation {
+                        self.bookmarkModel.toggleBookmark(article: self.article)
+                    }
+                } label: {
+                    Image(systemName: self.bookmarkModel.isBookmarked(article: self.article) ? "bookmark.fill" : "bookmark")
+                        .cardButtonStyle()
+                        .foregroundColor(self.bookmarkModel.isBookmarked(article: self.article) ? .primary : .secondary)
                 }
                 
-                ArticleCardButton(type: .share) {
+                Button {
                     self.presentShareSheet(url: article.articleURL)
+                } label: {
+                    Image(systemName: "square.and.arrow.up")
+                        .cardButtonStyle()
+                        .foregroundColor(.secondary)
                 }
             }
         }
@@ -45,5 +57,6 @@ struct ArticleCardSubHeader: View {
 struct NewsCardSubHeader_Previews: PreviewProvider {
     static var previews: some View {
         ArticleCardSubHeader(article: Article.previewData[1])
+            .environmentObject(BookmarkModel.shared)
     }
 }

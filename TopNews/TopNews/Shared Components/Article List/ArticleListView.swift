@@ -9,7 +9,8 @@ import SwiftUI
 
 struct ArticleListView: View {
     
-    @ObservedObject var newsModel: NewsModel
+    let articles: [Article]
+    let showCategoryPicker: Bool
     
     @State private var selectedArticle: Article?
     @State private var isShowingArticleView: Bool = false
@@ -18,18 +19,12 @@ struct ArticleListView: View {
     
     @Namespace var animation
     
-    private var articles: [Article] {
-        if case let .success(articles) = newsModel.articlesPhase {
-            return articles
-        } else {
-            return []
-        }
-    }
-    
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack(spacing: 0) {
-                CategoryPicker(newsModel: newsModel)
+                if self.showCategoryPicker {
+                    CategoryPicker()
+                }
                 
                 ForEach(articles) { article in
                     Button {
@@ -64,6 +59,6 @@ struct ArticleListView: View {
 
 struct NewsFeed_Previews: PreviewProvider {
     static var previews: some View {
-        ArticleListView(newsModel: NewsModel())
+        ArticleListView(articles: Article.previewData, showCategoryPicker: true)
     }
 }

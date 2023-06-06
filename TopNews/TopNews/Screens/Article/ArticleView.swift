@@ -11,6 +11,8 @@ struct ArticleView: View {
     
     let article: Article
     
+    @EnvironmentObject var bookmarkModel: BookmarkModel
+    
     @Binding var animateView: Bool
     @Binding var animateContent: Bool
     
@@ -31,7 +33,9 @@ struct ArticleView: View {
                     
                     Divider()
                     
-                    shareButton
+                    ArticleShareButton {
+                        self.presentShareSheet(url: article.articleURL)
+                    }
                     
                 }
                 .padding()
@@ -60,15 +64,15 @@ struct ArticleView: View {
     
     var header: some View {
         HStack {
-            ArticleHeaderButton(type: .dismiss) {
+            ArticleHeaderButton(alignment: .leading, systemImage: "xmark") {
                 onDismiss()
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
             
-            ArticleHeaderButton(type: .bookmark) {
-                // TODO: Bookmark
+            ArticleHeaderButton(alignment: .trailing, systemImage: self.bookmarkModel.isBookmarked(article: self.article) ? "bookmark.fill" : "bookmark") {
+                withAnimation {
+                    self.bookmarkModel.toggleBookmark(article: self.article)
+                }
             }
-            .frame(maxWidth: .infinity, alignment: .trailing)
         }
         .padding(.horizontal)
         .padding(.top, safeArea().top)
@@ -103,25 +107,11 @@ struct ArticleView: View {
                 .multilineTextAlignment(.leading)
         }
     }
-    
-    var shareButton: some View {
-        Button {
-            self.presentShareSheet(url: article.articleURL)
-        } label: {
-            Label("Share Article", systemImage: "square.and.arrow.up")
-                .foregroundColor(.primary)
-                .padding(.vertical, 10)
-                .padding(.horizontal, 25)
-                .background {
-                    RoundedRectangle(cornerRadius: 5, style: .continuous)
-                        .fill(.ultraThickMaterial)
-                }
-        }
-    }
 }
 
 struct ArticleView_Previews: PreviewProvider {
     static var previews: some View {
         ArticleView(article: Article.previewData[1], animateView: .constant(false), animateContent: .constant(false), onDismiss: {})
+            .environmentObject(BookmarkModel.shared)
     }
 }
