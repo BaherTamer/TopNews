@@ -48,7 +48,7 @@ struct NewsFeedView: View {
     @Sendable
     private func refreshTask() {
         Task {
-            self.newsModel.fetchTaskToken = FetchTaskToken(category: self.newsModel.fetchTaskToken.category, token: .now)
+            await self.newsModel.refreshTask()
         }
     }
 }

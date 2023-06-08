@@ -22,6 +22,10 @@
 		6E7AB1AE2A2F7EA200B03C4D /* ArticleShareButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7AB1AD2A2F7EA200B03C4D /* ArticleShareButton.swift */; };
 		6E7AB1B12A2F81C100B03C4D /* BookmarksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7AB1B02A2F81C100B03C4D /* BookmarksView.swift */; };
 		6E7AB1B32A2F868800B03C4D /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7AB1B22A2F868800B03C4D /* DataStore.swift */; };
+		6E7AB1B62A31F95400B03C4D /* CacheEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7AB1B52A31F95400B03C4D /* CacheEntry.swift */; };
+		6E7AB1B82A31F98700B03C4D /* CacheImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7AB1B72A31F98700B03C4D /* CacheImplementation.swift */; };
+		6E7AB1BE2A31FEDC00B03C4D /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7AB1BD2A31FEDC00B03C4D /* Cache.swift */; };
+		6E7AB1C02A31FF0200B03C4D /* KeysTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7AB1BF2A31FF0200B03C4D /* KeysTracker.swift */; };
 		6E80C7C72A29C54200F30713 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E80C7C62A29C54200F30713 /* Article.swift */; };
 		6E80C7C92A29C72E00F30713 /* NewsAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E80C7C82A29C72D00F30713 /* NewsAPIResponse.swift */; };
 		6E80C7CF2A29CCF300F30713 /* ArticleListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E80C7CE2A29CCF300F30713 /* ArticleListView.swift */; };
@@ -56,6 +60,10 @@
 		6E7AB1AD2A2F7EA200B03C4D /* ArticleShareButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleShareButton.swift; sourceTree = "<group>"; };
 		6E7AB1B02A2F81C100B03C4D /* BookmarksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksView.swift; sourceTree = "<group>"; };
 		6E7AB1B22A2F868800B03C4D /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
+		6E7AB1B52A31F95400B03C4D /* CacheEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheEntry.swift; sourceTree = "<group>"; };
+		6E7AB1B72A31F98700B03C4D /* CacheImplementation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheImplementation.swift; sourceTree = "<group>"; };
+		6E7AB1BD2A31FEDC00B03C4D /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
+		6E7AB1BF2A31FF0200B03C4D /* KeysTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeysTracker.swift; sourceTree = "<group>"; };
 		6E80C7C62A29C54200F30713 /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
 		6E80C7C82A29C72D00F30713 /* NewsAPIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsAPIResponse.swift; sourceTree = "<group>"; };
 		6E80C7CA2A29CA4600F30713 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -147,6 +155,17 @@
 			path = Bookmarks;
 			sourceTree = "<group>";
 		};
+		6E7AB1B42A31F93700B03C4D /* Cache */ = {
+			isa = PBXGroup;
+			children = (
+				6E7AB1B52A31F95400B03C4D /* CacheEntry.swift */,
+				6E7AB1B72A31F98700B03C4D /* CacheImplementation.swift */,
+				6E7AB1BF2A31FF0200B03C4D /* KeysTracker.swift */,
+				6E7AB1BD2A31FEDC00B03C4D /* Cache.swift */,
+			);
+			path = Cache;
+			sourceTree = "<group>";
+		};
 		6E80C7C52A29C53700F30713 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -214,6 +233,7 @@
 				6EBA41212A28B78F0043594C /* Assets.xcassets */,
 				6E80C7CA2A29CA4600F30713 /* Info.plist */,
 				6E19F6652A29D25D00AC8107 /* News.json */,
+				6E7AB1B42A31F93700B03C4D /* Cache */,
 				6E7AB1912A2CE2F900B03C4D /* Services */,
 				6E80C7C52A29C53700F30713 /* Models */,
 				6EFA71D82A29E72900DC35E5 /* Extensions */,
@@ -353,15 +373,19 @@
 				6E7AB19F2A2D017700B03C4D /* ErrorArticlesView.swift in Sources */,
 				6EFA71D42A29D96800DC35E5 /* CustomCorner.swift in Sources */,
 				6EFA71EA2A2A153400DC35E5 /* ArticleView.swift in Sources */,
+				6E7AB1B62A31F95400B03C4D /* CacheEntry.swift in Sources */,
 				6E80C7CF2A29CCF300F30713 /* ArticleListView.swift in Sources */,
 				6EFA71DC2A2A04BD00DC35E5 /* ArticleImage.swift in Sources */,
+				6E7AB1BE2A31FEDC00B03C4D /* Cache.swift in Sources */,
 				6E7AB1952A2CE34500B03C4D /* API.swift in Sources */,
 				6E7AB1A22A2D021800B03C4D /* PlaceholderView.swift in Sources */,
 				6E7AB1A52A2F597E00B03C4D /* CategoryPicker.swift in Sources */,
 				6E7AB1AC2A2F7D6600B03C4D /* ArticleHeaderButton.swift in Sources */,
+				6E7AB1C02A31FF0200B03C4D /* KeysTracker.swift in Sources */,
 				6E7AB1A92A2F777400B03C4D /* BookmarkModel.swift in Sources */,
 				6EFA71D62A29DFEB00DC35E5 /* SelectedButtonStyle.swift in Sources */,
 				6EFA71DA2A29E75E00DC35E5 /* View+Extensions.swift in Sources */,
+				6E7AB1B82A31F98700B03C4D /* CacheImplementation.swift in Sources */,
 				6E7AB1B32A2F868800B03C4D /* DataStore.swift in Sources */,
 				6E7AB1992A2CEC8D00B03C4D /* DataFetchPhase.swift in Sources */,
 				6E7AB1B12A2F81C100B03C4D /* BookmarksView.swift in Sources */,
