@@ -13,13 +13,19 @@ Watch the demo video on **[YouTube](https://youtu.be/)**.
 <br>
 
 ## 🌟 Features
-- 
+- Get the latest news based on categories
+- Read an article inside the app
+- Bookmark an article
+- Share an article
+- Display cache data offline
 
 <br>
 
 ## 🛠️ Tools
 - Swift
 - SwiftUI
+- NSCache
+- Swift Concurrency 
 
 <br>
 
