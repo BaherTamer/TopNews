@@ -8,7 +8,7 @@ Top News ia an iOS news app for checking the latest news using **REST API** & **
 <br>
 
 ## ▶️ Demo
-Watch the demo video on **[YouTube](https://youtu.be/)**.
+Watch the demo video on **[YouTube](https://youtu.be/badVO0cu1OQ)**.
 
 <br>
 
